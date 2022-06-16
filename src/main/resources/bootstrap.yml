@@ -1,0 +1,11 @@
+# The bootstrap file is a specific Spring Cloud file type and is loaded before
+# the application.properties or application.yml files. The bootstrap file is used for specifying
+# the Spring application name, the Spring Cloud Configuration Git location, encryption/ decryption
+# information, and so forth.
+# The bootstrap file is loaded by a parent Spring ApplicationContext, and that parent is loaded before
+# the one that uses the application properties or YAML files. 
+spring:
+  application:
+    name: CONFIG-SERVER
+server:
+  port: 8071
