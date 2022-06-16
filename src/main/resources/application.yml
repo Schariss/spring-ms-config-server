@@ -1,0 +1,32 @@
+# The bootstrap file is a specific Spring Cloud file type and is loaded before
+# the application.yml or application.yml files. The bootstrap file is used for specifying
+# the Spring application name, the Spring Cloud Configuration Git location, encryption/ decryption
+# information, and so forth.
+# The bootstrap file is loaded by a parent Spring ApplicationContext, and that parent is loaded before
+# the one that uses the application properties or YAML files. 
+spring:
+  application:
+    name: config-server
+  # Sets the Spring profile associated with the backend repository (filesystem)
+  profiles:
+    active: native
+
+  cloud:
+    config:
+      server:
+        # Local configuration: This locations can either of classpath or locations in the filesystem
+        native:
+          # Reads from a specific filesystem folder 
+          # we can also indicate a specific classpath to look for our configuration data.
+          # search-locations: file:///Users/mac/eclipse-workspace/configserver
+          # The classpath attribute causes Spring Cloud Config Server to look in the src/main/resources/config folder
+          search-locations: classpath:/config
+
+server:
+  port: 8071
+
+# native is just a profile created for the Spring Cloud Configuration Server, which indicates
+# that the configuration files are going to be retrieved or read from the classpath or filesystem.
+# When we use a filesystem-based repository, we’ll also use the native profile because it is a profile
+# in the Config Server that doesn’t use any Git or Vault configurations.
+
