@@ -18,6 +18,7 @@
         <docker.image.prefix>evato</docker.image.prefix>
         <spring-cloud.version>2021.0.3</spring-cloud.version>
     </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -27,16 +28,16 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-config-server</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>
+
     <dependencyManagement>
         <!--
-            Spring Cloud BOM (Bill of Materials) definition 
+            Spring Cloud BOM (Bill of Materials) definition
             This parent BOM contains all the third-party libraries and dependencies that are used
             in the cloud project and the version numbers of the individual projects that make up that version.
             By using a BOM definition, we can guarantee that we’ll use compatible versions of the subprojects
@@ -83,5 +84,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

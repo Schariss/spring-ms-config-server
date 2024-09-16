@@ -7,10 +7,10 @@
 spring:
   application:
     name: config-server
-  # Sets the Spring profile associated with the backend repository (filesystem)
   profiles:
     active: git
-#    active: native, git
+    # Sets the Spring profile associated with the backend repository (filesystem)
+#    active: native
 
   cloud:
     config:
@@ -29,6 +29,13 @@ spring:
 
 server:
   port: 8071
+
+#Enable all Spring Boot Actuator endpoints.
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
 
 # native is just a profile created for the Spring Cloud Configuration Server, which indicates
 # that the configuration files are going to be retrieved or read from the classpath or filesystem.
