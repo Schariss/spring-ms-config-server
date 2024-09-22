@@ -17,6 +17,7 @@
         <java.version>11</java.version>
         <docker.image.prefix>evato</docker.image.prefix>
         <spring-cloud.version>2021.0.3</spring-cloud.version>
+        <exec-maven.version>3.4.1</exec-maven.version>
     </properties>
 
     <dependencies>
@@ -59,8 +60,19 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
             </plugin>
-            <plugin>
+            <!--
+                This project has been abandoned refer to https://github.com/spotify/dockerfile-maven/issues/394
+            -->
+            <!-- <plugin>
                 <groupId>com.spotify</groupId>
                 <artifactId>dockerfile-maven-plugin</artifactId>
                 <version>1.4.13</version>
@@ -79,6 +91,48 @@
                             <goal>build</goal>
                             <goal>push</goal>
                         </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>${exec-maven.version}</version>
+                <executions>
+                    <execution>
+                        <id>docker-build</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>docker</executable>
+                            <workingDirectory>${project.basedir}</workingDirectory>
+                            <arguments>
+                                <argument>build</argument>
+                                <argument>--build-arg</argument>
+                                <argument>JAR_FILE=target/${project.build.finalName}.jar</argument>
+                                <argument>-t</argument>
+                                <argument>${docker.image.prefix}/${project.artifactId}:${project.version}</argument>
+                                <argument>.</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>docker-push</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>docker</executable>
+                            <workingDirectory>${project.basedir}</workingDirectory>
+                            <arguments>
+                                <argument>push</argument>
+                                <argument>${docker.image.prefix}/${project.artifactId}:${project.version}</argument>
+                            </arguments>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
