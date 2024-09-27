@@ -8,6 +8,7 @@ spring:
   application:
     name: config-server
   profiles:
+#    The default implementation of an environment repository in Spring Cloud Config is the Git backend
     active: git
     # Sets the Spring profile associated with the backend repository (filesystem)
 #    active: native
