@@ -3,7 +3,7 @@
 # the Spring application name, the Spring Cloud Configuration Git location, encryption/ decryption
 # information, and so forth.
 # The bootstrap file is loaded by a parent Spring ApplicationContext, and that parent is loaded before
-# the one that uses the application properties or YAML files. 
+# the one that uses the application properties or YAML files.
 spring:
   application:
     name: config-server
