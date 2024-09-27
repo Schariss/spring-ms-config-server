@@ -16,15 +16,15 @@ spring:
     config:
       server:
         # Local configuration: This locations can either of classpath or locations in the filesystem
-        # native:
-          # Reads from a specific filesystem folder
-          # we can also indicate a specific classpath to look for our configuration data.
-          # search-locations: file:///Users/mac/eclipse-workspace/configserver/src/main/resources/config
-          # The classpath attribute causes Spring Cloud Config Server to look in the src/main/resources/config folder
-          # search-locations: classpath:/config
+#         native:
+#          # Reads from a specific filesystem folder
+#          # we can also indicate a specific classpath to look for our configuration data.
+#          # search-locations: file:///Users/mac/eclipse-workspace/configserver/src/main/resources/config
+#          # The classpath attribute causes Spring Cloud Config Server to look in the src/main/resources/config folder
+#           search-locations: classpath:/config
         git:
           uri: https://github.com/Schariss/spring-ms-config.git
-          # search-paths: licensingservice
+#          search-paths: licensing-service
           default-label: master
 
 server:
